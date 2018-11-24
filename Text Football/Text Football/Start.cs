@@ -10,6 +10,11 @@ namespace Text_Football
     {
         public void startSetUp()
         {
+            numberOfPlayers();
+        }
+
+        public void numberOfPlayers()
+        {
 
         }
     }

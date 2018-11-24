@@ -8,5 +8,23 @@ namespace Text_Football
 {
     class Game
     {
+        public void game()
+        {
+
+        }
+        public void runGame()
+        {
+
+        }
+
+        public void coinToss()
+        {
+
+        }
+
+        public void kickoff()
+        {
+
+        }
     }
 }

@@ -12,6 +12,11 @@ namespace Text_Football
         {
             Start start = new Start();
             start.startSetUp();
+
+            //For Testing
+            Test t = new Test();
+            t.test();
+
         }
     }
 }
