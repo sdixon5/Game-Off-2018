@@ -51,6 +51,7 @@ namespace Text_Football
             while (unsuccessful)
             {
                 Console.WriteLine("Please enter the number for the play you would like to select:");
+                //need to hide the input... readline wont work, neither will readkey or read, but look inside windows screenshots, might have a way to do it
                 string input = Console.ReadLine();
                 if (int.TryParse(input, out value))
                 {
