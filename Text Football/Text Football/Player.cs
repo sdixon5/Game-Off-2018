@@ -27,6 +27,8 @@ namespace Text_Football
                 Console.WriteLine("5. Punt");
 
                 selectedPlay = inputForSelection();
+                //call offense object?
+                //change the return to a yardsgained, from the offense object?
             }
             else if(this.hasBall == false)
             {

@@ -11,7 +11,7 @@ namespace Text_Football
         static void Main(string[] args)
         {
             Start start = new Start();
-            start.startSetUp();
+            //start.startSetUp();
 
             //For Testing
             Test t = new Test();

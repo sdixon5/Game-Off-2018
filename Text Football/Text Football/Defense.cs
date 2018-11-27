@@ -8,9 +8,14 @@ namespace Text_Football
 {
     class Defense
     {
-        public void blitz()
+        public int blitz()
         {
+            int yardsDefended = 0;
 
+            Random random = new Random();
+            yardsDefended = random.Next(-15, 25);
+
+            return yardsDefended;
         }
 
         public void man()

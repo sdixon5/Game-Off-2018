@@ -12,6 +12,9 @@ namespace Text_Football
         {
             int yardsGained = 0;
 
+            Random random = new Random();
+            yardsGained = random.Next(-10, 100);
+
             return yardsGained;
         }
 
