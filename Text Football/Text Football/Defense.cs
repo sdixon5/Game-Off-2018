@@ -13,29 +13,49 @@ namespace Text_Football
             int yardsDefended = 0;
 
             Random random = new Random();
-            yardsDefended = random.Next(-15, 25);
+            yardsDefended = random.Next(0, 10);
 
             return yardsDefended;
         }
 
-        public void man()
+        public int man()
         {
+            int yardsDefended = 0;
 
+            Random random = new Random();
+            yardsDefended = random.Next(0, 10);
+
+            return yardsDefended;
         }
 
-        public void zone()
+        public int zone()
         {
+            int yardsDefended = 0;
 
+            Random random = new Random();
+            yardsDefended = random.Next(0, 10);
+
+            return yardsDefended;
         }
 
-        public void fieldGoalBlock()
+        public int fieldGoalBlock()
         {
+            int yardsDefended = 0;
 
+            Random random = new Random();
+            yardsDefended = random.Next(0, 10);
+
+            return yardsDefended;
         }
 
-        public void puntReturn()
+        public int puntReturn()
         {
+            int yardsDefended = 0;
 
+            Random random = new Random();
+            yardsDefended = random.Next(0, 50);
+
+            return yardsDefended;
         }
     }
 }
