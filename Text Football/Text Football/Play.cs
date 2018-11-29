@@ -93,7 +93,7 @@ namespace Text_Football
 
         public void reportOutcome(Player p1, Player p2)
         {
-            int t = turnOver();
+            /*int t = turnOver();
             if(t == yardDifference)
             {
                 Console.WriteLine("Turnover!");
@@ -107,9 +107,8 @@ namespace Text_Football
                     p1.hasBall = true;
                     p2.hasBall = false;
                 }
-                yardDifference = -2000;
                 return;
-            }
+            }*/
             if(p1.hasBall == true)
             {
                 if(p1.selectedPlay == 1)
@@ -139,7 +138,7 @@ namespace Text_Football
                     }
                     else if (p2.selectedPlay == 2 || p2.selectedPlay == 3)
                     {
-                        Console.WriteLine(p1.teamName + " threw the ball for " + yardDifference + " yards");
+                        Console.WriteLine(p2.teamName + " threw the ball for " + yardDifference + " yards");
                     }
                     else if (p2.selectedPlay == 4)
                     {
@@ -153,7 +152,7 @@ namespace Text_Football
             }
         }
 
-        public int turnOver()
+        /*public int turnOver()
         {
             int turnOver = 0;
 
@@ -161,6 +160,6 @@ namespace Text_Football
             turnOver = random.Next(-10, 101);
 
             return turnOver;
-        }
+        }*/
     }
 }

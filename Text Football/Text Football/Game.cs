@@ -13,26 +13,101 @@ namespace Text_Football
             Down d = new Down();
             Play p = new Play();
 
+            bool not_A_Score = true;
+
             int combinedScore = player1.score + player2.score;
 
             while(combinedScore < 50)
             {
                 d.ballOn = kickoff(player1, player2);
-                d.totalYardsToGo = 100 - d.ballOn;
+                not_A_Score = true;
 
-                Console.WriteLine("The ball is on the " + d.ballOn + " yard line. There are " + d.totalYardsToGo + " yards to go to score.");
+                while (not_A_Score)
+                {
+                    d.totalYardsToGo = 100 - d.ballOn;
 
-                //if play outcome < down to go then down++
+                    Console.WriteLine(d.down + " down. " + d.toGo + " yards til first.");
+                    Console.WriteLine("The ball is on the " + d.ballOn + " yard line. There are " + d.totalYardsToGo + " yards to go to score.");
 
-                //need to loop the play selection process and always check for a touchdown
+                    //if play outcome < down to go then down++
 
-                player1.playSelection();
-                player2.playSelection();
-                p.determineOutcome(player1, player2);
-                p.reportOutcome(player1, player2); //-- > how to handle punt and field goals?
+                    //need to loop the play selection process and always check for a touchdown
 
-                //check for touchdown
-                //update down info
+                    player1.playSelection();
+                    player2.playSelection();
+                    p.determineOutcome(player1, player2);
+                    p.reportOutcome(player1, player2); //-- > how to handle punt and field goals?
+
+                    int t = turnOver();
+
+                    if (t == p.yardDifference)
+                    {
+                        Console.WriteLine("Turnover!");
+                        if (player1.hasBall == true)
+                        {
+                            player1.hasBall = false;
+                            player2.hasBall = true;
+                        }
+                        else
+                        {
+                            player1.hasBall = true;
+                            player2.hasBall = false;
+                        }
+                        d.down = 1;
+                        d.toGo = 10;
+                        d.ballOn = 100 - d.ballOn;
+                        d.totalYardsToGo = 100 - d.totalYardsToGo;
+                    }
+                    else if (p.yardDifference >= d.toGo)
+                    {
+                        d.down = 1;
+                        d.toGo = 10;
+                        d.ballOn += p.yardDifference;
+                        d.totalYardsToGo -= p.yardDifference;
+                    }
+                    else if(p.yardDifference + d.ballOn >= 100)
+                    {
+                        //Console.WriteLine("Touchdown!");
+                        not_A_Score = false;
+                        if(player1.hasBall == true)
+                        {
+                            Console.WriteLine(player1.teamName + "  has scored a Touchdown!");
+                            player1.score += 7;
+                        }
+                        else
+                        {
+                            Console.WriteLine(player2.teamName + "  has scored a Touchdown!");
+                            player2.score += 7;
+                        }
+                    }
+                    else if(d.down == 4)
+                    {
+                        if(player1.hasBall == true)
+                        {
+                            player1.hasBall = false;
+                            player2.hasBall = true;
+                        }
+                        else
+                        {
+                            player1.hasBall = true;
+                            player2.hasBall = false;
+                        }
+                        d.down = 1;
+                        d.toGo = 10;
+                        d.ballOn = 100 - d.ballOn;
+                        d.totalYardsToGo = 100 - d.totalYardsToGo;
+                    }
+                    else
+                    {
+                        d.down++;
+                        d.toGo -= p.yardDifference;
+                        d.ballOn += p.yardDifference;
+                        d.totalYardsToGo -= p.yardDifference;
+                    }
+                    //check for touchdown
+                    //update down info
+                }
+
             }
 
             //need to loop this somehow
@@ -90,7 +165,8 @@ namespace Text_Football
                 yards = 100;
             }
 
-            Console.WriteLine("The kick was " + yardsKicked + " yards");
+            int ballKickedTo = 75 - distanceKicked;
+            Console.WriteLine("The kick was " + distanceKicked + " yards to the " + ballKickedTo + " yard line");
             Console.WriteLine("The return was for " + yardsReturned + " yards");
 
             //should return where the ball is on the field after the kickoff
@@ -102,6 +178,16 @@ namespace Text_Football
             bool touchdown = false;
 
             return touchdown;
+        }
+
+        public int turnOver()
+        {
+            int turnOver = 0;
+
+            Random random = new Random();
+            turnOver = random.Next(-10, 101);
+
+            return turnOver;
         }
     }
 }

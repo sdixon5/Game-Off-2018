@@ -20,7 +20,20 @@ namespace Text_Football
             //int selectedPlay = 0;
             //int yards = 0;
 
-            if(this.hasBall == true)
+            //for the cpu just have a random here, and if teamName == "CPU" then have the random number used instead of the console logs
+            if(this.playerName == "CPU" && this.hasBall == true)
+            {
+                Random r = new Random();
+                selectedPlay = r.Next(0, 6);
+                yards = callOffense();
+            }
+            else if(this.playerName == "CPU" && this.hasBall == false)
+            {
+                Random r = new Random();
+                selectedPlay = r.Next(0, 6);
+                yards = callDefense();
+            }
+            else if(this.hasBall == true)
             {
                 Console.WriteLine(teamName + " are on offense. Please pick from the following options.");
                 Console.WriteLine("1. Run");
@@ -32,27 +45,7 @@ namespace Text_Football
                 selectedPlay = inputForSelection();
                 //call offense object?
                 //change the return to a yardsgained, from the offense object?
-                Offense off = new Offense();
-                if(selectedPlay == 1)
-                {
-                    yards = off.run();
-                }
-                else if(selectedPlay == 2)
-                {
-                    yards = off.shortPass();
-                }
-                else if (selectedPlay == 3)
-                {
-                    yards = off.longPass();
-                }
-                else if (selectedPlay == 4)
-                {
-                    yards = off.fieldGoal();
-                }
-                else
-                {
-                    yards = off.punt();
-                }
+                yards = callOffense();
             }
             else if(this.hasBall == false)
             {
@@ -65,27 +58,7 @@ namespace Text_Football
 
                 selectedPlay = inputForSelection();
 
-                Defense def = new Defense();
-                if (selectedPlay == 1)
-                {
-                    yards = def.blitz();
-                }
-                else if (selectedPlay == 2)
-                {
-                    yards = def.zone();
-                }
-                else if (selectedPlay == 3)
-                {
-                    yards = def.man();
-                }
-                else if (selectedPlay == 4)
-                {
-                    yards = def.fieldGoalBlock();
-                }
-                else
-                {
-                    yards = def.puntReturn();
-                }
+                yards = callDefense();
             }
 
             //return yards;
@@ -121,6 +94,62 @@ namespace Text_Football
             }
 
             return value;
+        }
+
+        public int callOffense()
+        {
+            int yardsGained = 0;
+            Offense off = new Offense();
+            if (selectedPlay == 1)
+            {
+                yardsGained = off.run();
+            }
+            else if (selectedPlay == 2)
+            {
+                yardsGained = off.shortPass();
+            }
+            else if (selectedPlay == 3)
+            {
+                yardsGained = off.longPass();
+            }
+            else if (selectedPlay == 4)
+            {
+                yardsGained = off.fieldGoal();
+            }
+            else
+            {
+                yardsGained = off.punt();
+            }
+
+            return yardsGained;
+        }
+
+        public int callDefense()
+        {
+            int yardsDefended = 0;
+            Defense def = new Defense();
+            if (selectedPlay == 1)
+            {
+                yardsDefended = def.blitz();
+            }
+            else if (selectedPlay == 2)
+            {
+                yardsDefended = def.zone();
+            }
+            else if (selectedPlay == 3)
+            {
+                yardsDefended = def.man();
+            }
+            else if (selectedPlay == 4)
+            {
+                yardsDefended = def.fieldGoalBlock();
+            }
+            else
+            {
+                yardsDefended = def.puntReturn();
+            }
+
+            return yardsDefended;
         }
     }
 }
