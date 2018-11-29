@@ -110,6 +110,47 @@ namespace Text_Football
                 yardDifference = -2000;
                 return;
             }
+            if(p1.hasBall == true)
+            {
+                if(p1.selectedPlay == 1)
+                {
+                    Console.WriteLine(p1.teamName + " ran the ball for " + yardDifference +" yards");
+                }
+                else if(p1.selectedPlay == 2 || p1.selectedPlay == 3)
+                {
+                    Console.WriteLine(p1.teamName + " threw the ball for " + yardDifference + " yards");
+                }
+                else if(p1.selectedPlay == 4)
+                {
+                    Console.WriteLine(p1.teamName + " has attempted a field goal.");
+                }
+                else
+                {
+                    Console.WriteLine(p1.teamName + " has punted the ball");
+                }
+            }
+            else
+            {
+                if (p2.hasBall == true)
+                {
+                    if (p2.selectedPlay == 1)
+                    {
+                        Console.WriteLine(p2.teamName + " ran the ball for " + yardDifference + " yards");
+                    }
+                    else if (p2.selectedPlay == 2 || p2.selectedPlay == 3)
+                    {
+                        Console.WriteLine(p1.teamName + " threw the ball for " + yardDifference + " yards");
+                    }
+                    else if (p2.selectedPlay == 4)
+                    {
+                        Console.WriteLine(p2.teamName + " has attempted a field goal.");
+                    }
+                    else
+                    {
+                        Console.WriteLine(p2.teamName + " has punted the ball");
+                    }
+                }
+            }
         }
 
         public int turnOver()

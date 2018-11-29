@@ -27,7 +27,8 @@ namespace Text_Football
                 player1.playSelection();
                 player2.playSelection();
                 p.determineOutcome(player1, player2);
-                p.reportOutcome(player1, player2);
+                p.reportOutcome(player1, player2); //-- > how to handle punt and field goals?
+
                 //check for touchdown
                 //update down info
             }
