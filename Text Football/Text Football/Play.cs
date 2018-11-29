@@ -119,14 +119,14 @@ namespace Text_Football
                 {
                     Console.WriteLine(p1.teamName + " threw the ball for " + yardDifference + " yards");
                 }
-                else if(p1.selectedPlay == 4)
+                /*else if(p1.selectedPlay == 4)
                 {
                     Console.WriteLine(p1.teamName + " has attempted a field goal.");
                 }
                 else
                 {
                     Console.WriteLine(p1.teamName + " has punted the ball");
-                }
+                }*/
             }
             else
             {
@@ -140,14 +140,14 @@ namespace Text_Football
                     {
                         Console.WriteLine(p2.teamName + " threw the ball for " + yardDifference + " yards");
                     }
-                    else if (p2.selectedPlay == 4)
+                    /*else if (p2.selectedPlay == 4)
                     {
                         Console.WriteLine(p2.teamName + " has attempted a field goal.");
                     }
                     else
                     {
                         Console.WriteLine(p2.teamName + " has punted the ball");
-                    }
+                    }*/
                 }
             }
         }
@@ -161,5 +161,7 @@ namespace Text_Football
 
             return turnOver;
         }*/
+
+        
     }
 }
