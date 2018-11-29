@@ -18,9 +18,11 @@ namespace Text_Football
             //could be put into a score class! - maybe?
             int combinedScore = player1.score + player2.score;
 
+            //scoring is not being checked against the combined score
             while(combinedScore < 50)
             {
                 d.ballOn = kickoff(player1, player2);
+                //if ball on = 100 then its a touchdown via a kick return - need to account for this too
                 not_A_Score = true;
 
                 while (not_A_Score)
@@ -175,7 +177,7 @@ namespace Text_Football
 
             Random random = new Random();
 
-            int distanceKicked = random.Next(50, 76);
+            int distanceKicked = random.Next(50, 76); // -- will change from 76 to 86 when we account for touchbacks
             int yardsReturned = random.Next(0, 26);
             int luck = random.Next(0, 101);
             //ran num for yards kicked
