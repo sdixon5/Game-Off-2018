@@ -23,6 +23,13 @@ namespace Text_Football
                 //if play outcome < down to go then down++
 
                 //need to loop the play selection process and always check for a touchdown
+
+                player1.playSelection();
+                player2.playSelection();
+                p.determineOutcome(player1, player2);
+                p.reportOutcome(player1, player2);
+                //check for touchdown
+                //update down info
             }
 
             //need to loop this somehow

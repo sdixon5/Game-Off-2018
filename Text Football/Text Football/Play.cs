@@ -91,9 +91,25 @@ namespace Text_Football
             return yardDifference;
         }
 
-        public void reportOutcome()
+        public void reportOutcome(Player p1, Player p2)
         {
-
+            int t = turnOver();
+            if(t == yardDifference)
+            {
+                Console.WriteLine("Turnover!");
+                if(p1.hasBall == true)
+                {
+                    p1.hasBall = false;
+                    p2.hasBall = true;
+                }
+                else
+                {
+                    p1.hasBall = true;
+                    p2.hasBall = false;
+                }
+                yardDifference = -2000;
+                return;
+            }
         }
 
         public int turnOver()
