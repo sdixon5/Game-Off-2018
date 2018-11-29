@@ -17,11 +17,6 @@ namespace Text_Football
 
         }
 
-        public void coinToss()
-        {
-
-        }
-
         public void kickoff()
         {
 

@@ -11,7 +11,13 @@ namespace Text_Football
         public void startSetUp()
         {
             int numPlayers = numberOfPlayers();
-            createPlayers(numPlayers);
+            List<Player> players = createPlayers(numPlayers);
+            Player p1 = players[0];
+            Player p2 = players[1];
+            //for testing, it works!
+            //Console.WriteLine(p1.teamName);
+            //Console.ReadLine();
+
         }
 
         public int numberOfPlayers()
@@ -99,6 +105,11 @@ namespace Text_Football
             }
 
             return players;
+        }
+
+        public void coinToss()
+        {
+
         }
     }
 }
