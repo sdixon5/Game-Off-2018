@@ -8,11 +8,7 @@ namespace Text_Football
 {
     class Game
     {
-        public void game()
-        {
-
-        }
-        public void runGame()
+        public void runGame(Player player1, Player player2)
         {
 
         }

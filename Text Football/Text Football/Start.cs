@@ -17,6 +17,13 @@ namespace Text_Football
             //for testing, it works!
             //Console.WriteLine(p1.teamName);
             //Console.ReadLine();
+            coinToss(p1, p2);
+            //testing coinToss, all good!
+            //Console.WriteLine("player 1: " + p1.hasBall);
+            //Console.WriteLine("player 2: " + p2.hasBall);
+            //Console.ReadLine();
+            Game game = new Game();
+            game.runGame(p1, p2);
 
         }
 
@@ -107,9 +114,74 @@ namespace Text_Football
             return players;
         }
 
-        public void coinToss()
+        public void coinToss(Player p1, Player p2)
         {
+            Random random = new Random();
+            int whoPicks = random.Next(0, 2);
+            //Console.WriteLine("random: " + whoPicks);
+            if(whoPicks == 1 && p2.playerName == "CPU")
+            {
+                p2.hasBall = true;
+                Console.WriteLine("The CPU has decided to kick the ball");
+                return;
+            }
+            else if(whoPicks == 0)
+            {
+                Console.WriteLine(p1.playerName + " you have been selected to pick whether you would like to kick or recieve to start the game.");
+            }
+            else
+            {
+                Console.WriteLine(p2.playerName + " you have been selected to pick whether you would like to kick or recieve to start the game.");
+            }
+            int selection = inputForSelection();
+            if(whoPicks == 0 && selection == 0)
+            {
+                p1.hasBall = true;
+            }
+            else if(whoPicks == 1 && selection == 0)
+            {
+                p2.hasBall = true;
+            }
+            else if(whoPicks == 0 && selection == 1)
+            {
+                p2.hasBall = true;
+            }
+            else
+            {
+                p1.hasBall = true;
+            }
+        }
 
+        public int inputForSelection()
+        {
+            bool unsuccessful = true;
+            int value = 0;
+
+            while (unsuccessful)
+            {
+                Console.WriteLine("Please enter 0 to kick or 1 to recieve the ball:");
+                //need to hide the input... readline wont work, neither will readkey or read, but look inside windows screenshots, might have a way to do it
+                string input = Console.ReadLine();
+                if (int.TryParse(input, out value))
+                {
+                    if (value == 0 || value == 1)
+                    {
+                        Console.WriteLine("You have selected: " + value);
+                        unsuccessful = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Your input needs to be one of the options available to you.");
+                    }
+
+                }
+                else
+                {
+                    Console.WriteLine("Your input needs to be a number. Please try again.");
+                }
+            }
+
+            return value;
         }
     }
 }

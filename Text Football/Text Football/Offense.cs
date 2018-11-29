@@ -13,7 +13,7 @@ namespace Text_Football
             int yardsGained = 0;
 
             Random random = new Random();
-            yardsGained = random.Next(0, 30);
+            yardsGained = random.Next(0, 31);
 
             return yardsGained;
         }
@@ -23,7 +23,7 @@ namespace Text_Football
             int yardsGained = 0;
 
             Random random = new Random();
-            yardsGained = random.Next(0, 20);
+            yardsGained = random.Next(0, 21);
 
             return yardsGained;
         }
@@ -33,7 +33,7 @@ namespace Text_Football
             int yardsGained = 0;
 
             Random random = new Random();
-            yardsGained = random.Next(20, 60);
+            yardsGained = random.Next(20, 61);
 
             return yardsGained;
         }
@@ -43,7 +43,7 @@ namespace Text_Football
             int yardsGained = 0;
 
             Random random = new Random();
-            yardsGained = random.Next(0, 65);
+            yardsGained = random.Next(0, 66);
 
             return yardsGained;
         }
@@ -53,7 +53,7 @@ namespace Text_Football
             int yardsGained = 0;
 
             Random random = new Random();
-            yardsGained = random.Next(15, 65);
+            yardsGained = random.Next(15, 66);
 
             return yardsGained;
         }

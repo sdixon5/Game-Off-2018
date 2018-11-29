@@ -11,7 +11,8 @@ namespace Text_Football
         public void test()
         {
             //test_player_playSelection();
-            testing_off_run_returnNeg();
+            //testing_off_run_returnNeg();
+            //testing_random();
         }
         public void test_player_playSelection()
         {
@@ -23,6 +24,19 @@ namespace Text_Football
         {
             Offense off = new Offense();
             Console.WriteLine(off.run());
+            Console.ReadLine();
+        }
+
+        public void testing_random()
+        {
+            int count = 0;
+            Random r = new Random();
+            while(count < 100)
+            {
+                //.Next(inclusive, exclusive ie not included)
+                Console.WriteLine(r.Next(0, 2));
+                count++;
+            }
             Console.ReadLine();
         }
     }
