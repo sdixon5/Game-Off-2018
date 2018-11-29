@@ -21,7 +21,7 @@ namespace Text_Football
             //int yards = 0;
 
             //for the cpu just have a random here, and if teamName == "CPU" then have the random number used instead of the console logs
-            if(this.playerName == "CPU" && this.hasBall == true)
+            /*if(this.playerName == "CPU" && this.hasBall == true)
             {
                 Random r = new Random();
                 selectedPlay = r.Next(0, 6);
@@ -32,8 +32,9 @@ namespace Text_Football
                 Random r = new Random();
                 selectedPlay = r.Next(0, 6);
                 yards = callDefense();
-            }
-            else if(this.hasBall == true)
+            }*/
+
+            if(this.hasBall == true)
             {
                 Console.WriteLine(teamName + " are on offense. Please pick from the following options.");
                 Console.WriteLine("1. Run");

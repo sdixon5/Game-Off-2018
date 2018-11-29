@@ -40,7 +40,7 @@ namespace Text_Football
                     if (player2.playerName == "CPU")
                     {
                         CPU cpu = new CPU();
-                        cpu.pickPlay(player2);
+                        cpu.pickPlay(player2, d);
                     }
                     else
                     {
@@ -73,12 +73,22 @@ namespace Text_Football
                         }
                         else
                         {
+                            if(player1.hasBall == true)
+                            { 
+                                Console.WriteLine(player1.teamName + " missed the field goal");
+                            }
+                            else
+                            {
+                                Console.WriteLine(player2.teamName + " missed the field goal");
+                            }
                             switchBall(player1, player2);
                             d.down = 1;
                             d.toGo = 10;
                             d.ballOn = 100 - d.ballOn;
                             d.totalYardsToGo = 100 - d.totalYardsToGo;
                         }
+
+                        showScore(player1, player2);
                         //if return of 0 = good, then trigger not a score
                             //call kickoff!
                             //set all down settings for kickoff
@@ -92,27 +102,21 @@ namespace Text_Football
                     else
                     {
                         p.determineOutcome(player1, player2);
-                        p.reportOutcome(player1, player2);
+                        p.reportOutcome(player1, player2, d.totalYardsToGo);
 
                         int t = turnOver();
 
                         if (t == p.yardDifference)
                         {
+                            //need to account for the yards gained or lost on the play
                             Console.WriteLine("Turnover!");
                             switchBall(player1, player2);
                             d.down = 1;
                             d.toGo = 10;
-                            d.ballOn = 100 - d.ballOn;
-                            d.totalYardsToGo = 100 - d.totalYardsToGo;
+                            d.ballOn = 100 - (d.ballOn + p.yardDifference);
+                            d.totalYardsToGo = 100 - d.ballOn;
                         }
-                        else if (p.yardDifference >= d.toGo)
-                        {
-                            d.down = 1;
-                            d.toGo = 10;
-                            d.ballOn += p.yardDifference;
-                            d.totalYardsToGo -= p.yardDifference;
-                        }
-                        else if (p.yardDifference + d.ballOn >= 100)
+                        else if (p.yardDifference >= d.totalYardsToGo)
                         {
                             //this is calling a touchdown!
                             not_A_Score = false;
@@ -122,6 +126,14 @@ namespace Text_Football
                             d.toGo = 10;
                             d.ballOn = 25;
                             d.totalYardsToGo = 75;
+                            showScore(player1, player2);
+                        }
+                        else if (p.yardDifference >= d.toGo)
+                        {
+                            d.down = 1;
+                            d.toGo = 10;
+                            d.ballOn += p.yardDifference;
+                            d.totalYardsToGo -= p.yardDifference;
                         }
                         else if (d.down == 4)
                         {
@@ -265,6 +277,13 @@ namespace Text_Football
                 player2.hasBall = false;
                 Console.WriteLine(player1.teamName + " has the ball now. \n");
             }
+        }
+
+        public void showScore(Player p1, Player p2)
+        {
+            Console.WriteLine("The current score: ");
+            Console.WriteLine(p1.teamName + " has a score of: " + p1.score);
+            Console.WriteLine(p2.teamName + " has a score of: " + p2.score + "\n");
         }
     }
 }

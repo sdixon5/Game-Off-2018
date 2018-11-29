@@ -91,7 +91,7 @@ namespace Text_Football
             return yardDifference;
         }
 
-        public void reportOutcome(Player p1, Player p2)
+        public void reportOutcome(Player p1, Player p2, int yardsToGo)
         {
             /*int t = turnOver();
             if(t == yardDifference)
@@ -109,7 +109,12 @@ namespace Text_Football
                 }
                 return;
             }*/
-            if(p1.hasBall == true)
+            if (yardDifference >= yardsToGo)
+            {
+                yardDifference = yardsToGo;
+            }
+
+            if (p1.hasBall == true)
             {
                 if(p1.selectedPlay == 1)
                 {
