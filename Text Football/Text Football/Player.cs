@@ -16,6 +16,7 @@ namespace Text_Football
         public int playSelection()
         {
             int selectedPlay = 0;
+            int yards = 0;
 
             if(this.hasBall == true)
             {
@@ -29,6 +30,27 @@ namespace Text_Football
                 selectedPlay = inputForSelection();
                 //call offense object?
                 //change the return to a yardsgained, from the offense object?
+                Offense off = new Offense();
+                if(selectedPlay == 1)
+                {
+                    yards = off.run();
+                }
+                else if(selectedPlay == 2)
+                {
+                    yards = off.shortPass();
+                }
+                else if (selectedPlay == 3)
+                {
+                    yards = off.longPass();
+                }
+                else if (selectedPlay == 4)
+                {
+                    yards = off.fieldGoal();
+                }
+                else
+                {
+                    yards =off.punt();
+                }
             }
             else if(this.hasBall == false)
             {
@@ -40,9 +62,31 @@ namespace Text_Football
                 Console.WriteLine("5. Punt Return");
 
                 selectedPlay = inputForSelection();
+
+                Defense def = new Defense();
+                if (selectedPlay == 1)
+                {
+                    yards = def.blitz();
+                }
+                else if (selectedPlay == 2)
+                {
+                    yards = def.zone();
+                }
+                else if (selectedPlay == 3)
+                {
+                    yards = def.man();
+                }
+                else if (selectedPlay == 4)
+                {
+                    yards = def.fieldGoalBlock();
+                }
+                else
+                {
+                    yards = def.puntReturn();
+                }
             }
 
-            return selectedPlay;
+            return yards;
         }
 
         public int inputForSelection()

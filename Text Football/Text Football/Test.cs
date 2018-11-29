@@ -10,14 +10,16 @@ namespace Text_Football
     {
         public void test()
         {
-            //test_player_playSelection();
+            test_player_playSelection();
             //testing_off_run_returnNeg();
             //testing_random();
         }
         public void test_player_playSelection()
         {
             Player p1 = new Player();
-            p1.playSelection();
+            int yards = p1.playSelection();
+            //Console.WriteLine("The yards defended is " + yards);
+            //Console.ReadLine();
         }
 
         public void testing_off_run_returnNeg()
