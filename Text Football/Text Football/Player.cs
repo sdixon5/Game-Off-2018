@@ -12,11 +12,13 @@ namespace Text_Football
         public string teamName = "";
         public int score = 0;
         public bool hasBall = false;
+        public int selectedPlay = 0;
+        public int yards = 0;
 
-        public int playSelection()
+        public void playSelection()
         {
-            int selectedPlay = 0;
-            int yards = 0;
+            //int selectedPlay = 0;
+            //int yards = 0;
 
             if(this.hasBall == true)
             {
@@ -86,7 +88,7 @@ namespace Text_Football
                 }
             }
 
-            return yards;
+            //return yards;
         }
 
         public int inputForSelection()

@@ -17,9 +17,19 @@ namespace Text_Football
         public void test_player_playSelection()
         {
             Player p1 = new Player();
-            int yards = p1.playSelection();
+            int count = 0;
+            while(count < 10)
+            {
+                p1.playSelection();
+                Console.WriteLine("yards: " + p1.yards);
+            }
+            //int yards = p1.playSelection();
+            
+            Console.Read();
             //Console.WriteLine("The yards defended is " + yards);
             //Console.ReadLine();
+            Console.WriteLine(p1.selectedPlay);
+            Console.Read();
         }
 
         public void testing_off_run_returnNeg()

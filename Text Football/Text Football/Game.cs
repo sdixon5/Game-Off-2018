@@ -18,6 +18,11 @@ namespace Text_Football
             while(combinedScore < 50)
             {
                 d.ballOn = kickoff(player1, player2);
+                d.totalYardsToGo = 100 - d.ballOn;
+
+                //if play outcome < down to go then down++
+
+                //need to loop the play selection process and always check for a touchdown
             }
 
             //need to loop this somehow
@@ -40,10 +45,14 @@ namespace Text_Football
             if(player1.hasBall == true)
             {
                 Console.WriteLine(player1.teamName + " has kicked off to " + player2.teamName);
+                player1.hasBall = false;
+                player2.hasBall = true;
             }
             else
             {
                 Console.WriteLine(player2.teamName + " has kicked off to " + player1.teamName);
+                player1.hasBall = true;
+                player2.hasBall = false;
             }
 
             Random random = new Random();
