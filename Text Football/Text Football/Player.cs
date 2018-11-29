@@ -22,7 +22,7 @@ namespace Text_Football
 
             if(this.hasBall == true)
             {
-                Console.WriteLine("You are on offense. Please pick from the following options.");
+                Console.WriteLine(teamName + " are on offense. Please pick from the following options.");
                 Console.WriteLine("1. Run");
                 Console.WriteLine("2. Short Pass");
                 Console.WriteLine("3. Long Pass");
@@ -56,7 +56,7 @@ namespace Text_Football
             }
             else if(this.hasBall == false)
             {
-                Console.WriteLine("You are on defense. Please pick from the following options.");
+                Console.WriteLine(teamName + " are on defense. Please pick from the following options.");
                 Console.WriteLine("1. Blitz");
                 Console.WriteLine("2. Zone");
                 Console.WriteLine("3. Man");

@@ -20,6 +20,8 @@ namespace Text_Football
                 d.ballOn = kickoff(player1, player2);
                 d.totalYardsToGo = 100 - d.ballOn;
 
+                Console.WriteLine("The ball is on the " + d.ballOn + " yard line. There are " + d.totalYardsToGo + " yards to go to score.");
+
                 //if play outcome < down to go then down++
 
                 //need to loop the play selection process and always check for a touchdown
