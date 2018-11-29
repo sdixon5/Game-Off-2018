@@ -25,7 +25,7 @@ namespace Text_Football
             int turnOver = 0;
 
             Random random = new Random();
-            turnOver = random.Next(-15, 100);
+            turnOver = random.Next(0, 101);
 
             return turnOver;
         }

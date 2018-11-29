@@ -49,7 +49,7 @@ namespace Text_Football
                 }
                 else
                 {
-                    yards =off.punt();
+                    yards = off.punt();
                 }
             }
             else if(this.hasBall == false)
