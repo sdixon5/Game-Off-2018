@@ -100,6 +100,12 @@ namespace Text_Football
                     else if(player1.hasBall == true && player1.selectedPlay == 5 || player2.hasBall == true && player2.selectedPlay == 5)
                     {
                         //call punt
+                        d.down = 1;
+                        d.toGo = 10;
+                        d.ballOn = 100 - (d.ballOn + p.yardDifference);
+                        d.totalYardsToGo = 100 - d.ballOn;
+                        touchback(d);
+                        switchBall(player1, player2);
                     }
                     else
                     {
@@ -157,7 +163,12 @@ namespace Text_Football
                     
                 }
 
+                combinedScore = player1.score + player2.score;
+
             }
+
+            Console.WriteLine("Final Score!");
+            showScore(player1, player2);
 
         }
 
@@ -286,6 +297,15 @@ namespace Text_Football
             Console.WriteLine("The current score: ");
             Console.WriteLine(p1.teamName + " has a score of: " + p1.score);
             Console.WriteLine(p2.teamName + " has a score of: " + p2.score + "\n");
+        }
+
+        public void touchback(Down d)
+        {
+            if(d.totalYardsToGo >= 100)
+            {
+                d.ballOn = 25;
+                d.totalYardsToGo = 75;
+            }
         }
     }
 }
