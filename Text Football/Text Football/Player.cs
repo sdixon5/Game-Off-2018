@@ -41,7 +41,7 @@ namespace Text_Football
                 Console.WriteLine("2. Short Pass");
                 Console.WriteLine("3. Long Pass");
                 Console.WriteLine("4. Field Goal");
-                Console.WriteLine("5. Punt");
+                Console.WriteLine("5. Punt \n");
 
                 selectedPlay = inputForSelection();
                 //call offense object?
@@ -55,7 +55,7 @@ namespace Text_Football
                 Console.WriteLine("2. Zone");
                 Console.WriteLine("3. Man");
                 Console.WriteLine("4. Field Goal Block");
-                Console.WriteLine("5. Punt Return");
+                Console.WriteLine("5. Punt Return \n");
 
                 selectedPlay = inputForSelection();
 
@@ -72,14 +72,14 @@ namespace Text_Football
 
             while (unsuccessful)
             {
-                Console.WriteLine("Please enter the number for the play you would like to select:");
+                Console.WriteLine("Please enter the number for the play you would like to select: \n");
                 //need to hide the input... readline wont work, neither will readkey or read, but look inside windows screenshots, might have a way to do it
                 string input = Console.ReadLine();
                 if (int.TryParse(input, out value))
                 {
                     if(value == 1|| value == 2 || value == 3 || value == 4 || value == 5)
                     {
-                        Console.WriteLine("You have selected: " + value);
+                        //Console.WriteLine("You have selected: " + value);
                         unsuccessful = false;
                     }
                     else

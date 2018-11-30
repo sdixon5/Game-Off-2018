@@ -30,7 +30,7 @@ namespace Text_Football
                     d.totalYardsToGo = 100 - d.ballOn;
 
                     Console.WriteLine(d.down + " down. " + d.toGo + " yards til first.");
-                    Console.WriteLine("The ball is on the " + d.ballOn + " yard line. There are " + d.totalYardsToGo + " yards to go to score.");
+                    Console.WriteLine("The ball is on the " + d.ballOn + " yard line. There are " + d.totalYardsToGo + " yards to go to score. \n");
 
                     //if play outcome < down to go then down++
 
@@ -59,12 +59,12 @@ namespace Text_Football
                             not_A_Score = false;
                             if (player1.hasBall == true)
                             {
-                                Console.WriteLine(player1.teamName + "  has scored a Field Goal!");
+                                Console.WriteLine(player1.teamName + "  has scored a Field Goal! \n");
                                 player1.score += 3;
                             }
                             else
                             {
-                                Console.WriteLine(player2.teamName + "  has scored a Field Goal!");
+                                Console.WriteLine(player2.teamName + "  has scored a Field Goal! \n");
                                 player2.score += 3;
                             }
                             //need to call kickoff - is done by not a score boolean and set all down settings for kickoff
@@ -77,11 +77,11 @@ namespace Text_Football
                         {
                             if(player1.hasBall == true)
                             { 
-                                Console.WriteLine(player1.teamName + " missed the field goal");
+                                Console.WriteLine(player1.teamName + " missed the field goal \n");
                             }
                             else
                             {
-                                Console.WriteLine(player2.teamName + " missed the field goal");
+                                Console.WriteLine(player2.teamName + " missed the field goal \n");
                             }
                             switchBall(player1, player2);
                             d.down = 1;
@@ -213,7 +213,7 @@ namespace Text_Football
 
             int ballKickedTo = 75 - distanceKicked;
             Console.WriteLine("The kick was " + distanceKicked + " yards to the " + ballKickedTo + " yard line");
-            Console.WriteLine("The return was for " + yardsReturned + " yards");
+            Console.WriteLine("The return was for " + yardsReturned + " yards \n");
 
             //should return where the ball is on the field after the kickoff
             return yards;
@@ -224,12 +224,12 @@ namespace Text_Football
         {
             if (player1.hasBall == true)
             {
-                Console.WriteLine(player1.teamName + "  has scored a Touchdown!");
+                Console.WriteLine(player1.teamName + "  has scored a Touchdown! \n");
                 player1.score += 7;
             }
             else
             {
-                Console.WriteLine(player2.teamName + "  has scored a Touchdown!");
+                Console.WriteLine(player2.teamName + "  has scored a Touchdown! \n");
                 player2.score += 7;
             }
         }

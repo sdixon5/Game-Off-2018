@@ -118,11 +118,11 @@ namespace Text_Football
             {
                 if(p1.selectedPlay == 1)
                 {
-                    Console.WriteLine(p1.teamName + " ran the ball for " + yardDifference +" yards");
+                    Console.WriteLine(p1.teamName + " ran the ball for " + yardDifference +" yards \n");
                 }
                 else if(p1.selectedPlay == 2 || p1.selectedPlay == 3)
                 {
-                    Console.WriteLine(p1.teamName + " threw the ball for " + yardDifference + " yards");
+                    Console.WriteLine(p1.teamName + " threw the ball for " + yardDifference + " yards \n");
                 }
                 /*else if(p1.selectedPlay == 4)
                 {
@@ -139,11 +139,11 @@ namespace Text_Football
                 {
                     if (p2.selectedPlay == 1)
                     {
-                        Console.WriteLine(p2.teamName + " ran the ball for " + yardDifference + " yards");
+                        Console.WriteLine(p2.teamName + " ran the ball for " + yardDifference + " yards \n");
                     }
                     else if (p2.selectedPlay == 2 || p2.selectedPlay == 3)
                     {
-                        Console.WriteLine(p2.teamName + " threw the ball for " + yardDifference + " yards");
+                        Console.WriteLine(p2.teamName + " threw the ball for " + yardDifference + " yards \n");
                     }
                     /*else if (p2.selectedPlay == 4)
                     {
