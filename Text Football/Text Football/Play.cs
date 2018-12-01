@@ -215,6 +215,29 @@ namespace Text_Football
             return fieldGoalIsGood;
         }
 
+        public void punt(Player player1, Player player2, Down d)
+        {
+            if (player1.hasBall == true)
+            {
+                yardDifference = player1.yards - player2.yards;
+                Console.WriteLine(player1.teamName + " has punted the ball to " + player2.teamName);
+                Console.WriteLine("The punt was " + player1.yards + " yards. With a return of " + player2.yards + "\n");
+            }
+            else
+            {
+                yardDifference = player2.yards = player1.yards;
+                Console.WriteLine(player2.teamName + " has punted the ball to " + player1.teamName + "\n");
+                Console.WriteLine("The punt was " + player2.yards + " yards. With a return of " + player1.yards + "\n");
+            }
+
+            d.down = 1;
+            d.toGo = 10;
+            d.ballOn = 100 - (d.ballOn + yardDifference);
+            d.totalYardsToGo = 100 - d.ballOn;
+            touchback(d);
+            switchBall(player1, player2);
+        }
+
         public void touchback(Down d)
         {
             if (d.totalYardsToGo >= 100)

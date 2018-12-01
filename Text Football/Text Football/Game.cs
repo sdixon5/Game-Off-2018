@@ -83,26 +83,7 @@ namespace Text_Football
                     }
                     else if(player1.hasBall == true && player1.selectedPlay == 5 || player2.hasBall == true && player2.selectedPlay == 5)
                     {
-                        //this is punting the ball
-                        if(player1.hasBall == true)
-                        {
-                            p.yardDifference = player1.yards - player2.yards;
-                            Console.WriteLine(player1.teamName + " has punted the ball to " + player2.teamName);
-                            Console.WriteLine("The punt was " + player1.yards + " yards. With a return of " + p.yardDifference + "\n");
-                        }
-                        else
-                        {
-                            p.yardDifference = player2.yards - player1.yards;
-                            Console.WriteLine(player2.teamName + " has punted the ball to " + player1.teamName + "\n");
-                            Console.WriteLine("The punt was " + player2.yards + " yards. With a return of " + p.yardDifference + "\n");
-                        }
-                        
-                        d.down = 1;
-                        d.toGo = 10;
-                        d.ballOn = 100 - (d.ballOn + p.yardDifference);
-                        d.totalYardsToGo = 100 - d.ballOn;
-                        p.touchback(d);
-                        p.switchBall(player1, player2);
+                        p.punt(player1, player2, d);
                     }
                     else
                     {
