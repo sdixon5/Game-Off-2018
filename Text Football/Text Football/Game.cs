@@ -26,6 +26,7 @@ namespace Text_Football
                 {
                     d.totalYardsToGo = 100 - d.ballOn;
 
+                    Console.WriteLine("============================================================================================================");
                     Console.WriteLine(d.down + " down. " + d.toGo + " yards til first.");
                     Console.WriteLine("The ball is on the " + d.ballOn + " yard line. There are " + d.totalYardsToGo + " yards to go to score. \n");
 
@@ -48,6 +49,7 @@ namespace Text_Football
                         d.toGo = 10;
                         d.ballOn = 25;
                         d.totalYardsToGo = 75;
+                        showScore(player1, player2);
                     }
                     else if (player1.hasBall == true && player1.selectedPlay == 4 || player2.hasBall == true && player2.selectedPlay == 4)
                     {

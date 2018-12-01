@@ -19,7 +19,7 @@ namespace Text_Football
         {
             if(this.hasBall == true)
             {
-                Console.WriteLine("\n\n\n" + teamName + " are on offense. Please pick from the following options.");
+                Console.WriteLine("\n" + teamName + " are on offense. Please pick from the following options.");
                 Console.WriteLine("1. Run");
                 Console.WriteLine("2. Short Pass");
                 Console.WriteLine("3. Long Pass");
@@ -32,7 +32,7 @@ namespace Text_Football
             }
             else if(this.hasBall == false)
             {
-                Console.WriteLine("\n\n\n" + teamName + " are on defense. Please pick from the following options.");
+                Console.WriteLine("\n" + teamName + " are on defense. Please pick from the following options.");
                 Console.WriteLine("1. Blitz");
                 Console.WriteLine("2. Zone");
                 Console.WriteLine("3. Man");
@@ -53,7 +53,7 @@ namespace Text_Football
 
             while (unsuccessful)
             {
-                Console.WriteLine("Please enter the number for the play you would like to select and press enter: \n\n\n");
+                Console.WriteLine("Please enter the number for the play you would like to select and press enter: \n");
                 string input = hiddenInput();
                 if (int.TryParse(input, out value))
                 {

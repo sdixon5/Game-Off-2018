@@ -83,6 +83,8 @@ namespace Text_Football
 
         public void reportOutcome(Player p1, Player p2, int yardsToGo)
         {
+            Console.WriteLine("============================================================================================================");
+
             if (yardDifference >= yardsToGo)
             {
                 yardDifference = yardsToGo;
@@ -117,13 +119,14 @@ namespace Text_Football
 
         public int kickoff(Player player1, Player player2, Down d)
         {
+            Console.WriteLine("============================================================================================================");
             if (player1.hasBall == true)
             {
-                Console.WriteLine(player1.teamName + " has kicked off to " + player2.teamName);
+                Console.WriteLine("\n" + player1.teamName + " has kicked off to " + player2.teamName);
             }
             else
             {
-                Console.WriteLine(player2.teamName + " has kicked off to " + player1.teamName);
+                Console.WriteLine("\n" + player2.teamName + " has kicked off to " + player1.teamName);
             }
             switchBall(player1, player2);
 
@@ -227,6 +230,7 @@ namespace Text_Football
 
         public void punt(Player player1, Player player2, Down d)
         {
+            Console.WriteLine("============================================================================================================");
             if (player1.hasBall == true)
             {
                 yardDifference = player1.yards - player2.yards;
@@ -285,6 +289,7 @@ namespace Text_Football
 
         public void safety(Player p1, Player p2)
         {
+            Console.WriteLine("============================================================================================================");
             Console.WriteLine("Safety!");
             if(p1.hasBall == true)
             {

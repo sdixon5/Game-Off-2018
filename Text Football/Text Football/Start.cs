@@ -23,24 +23,14 @@ namespace Text_Football
 
         public void intro()
         {
-            //test if this fixes are random issues
-            /*Random r = new Random();
+            //helps randomize the numbers
+            Random r = new Random();
             int count = 0;
             while(count < 100)
             {
                 r.Next(0, 101);
                 count++;
-            }*/
-            //Console.SetWindowPosition(0, 0);
-            /*Console.WindowHeight = Console.LargestWindowHeight;
-            Console.WindowWidth = Console.LargestWindowWidth;
-            Console.WindowTop = 0;
-            Console.WindowLeft = 0;
-            Console.SetBufferSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
-            Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);*/
-            
-            
-            
+            }
 
             Console.WriteLine(" = = = = = =   = = = = =   =      =   = = = = = =            = = = = =      = = = =       = = = =     = = = = = =   = = = =            =         =             =               ");
             Console.WriteLine("      =        =            =    =         =                 =             =       =     =       =         =        =      =          = =        =             =               ");
@@ -50,7 +40,7 @@ namespace Text_Football
             Console.WriteLine("      =        =            =    =         =                 =             =       =     =       =         =        =        =    =         =    =             =               ");
             Console.WriteLine("      =        = = = = =   =      =        =                 =              = = = =       = = = =          =        = = = = =    =           =   = = = = =     = = = = =       ");
 
-            Console.WriteLine("\n \n Press Any Key to Start");
+            Console.WriteLine("\n \n Press Any Key to Start \n");
 
             Console.ReadLine();
 
@@ -71,18 +61,18 @@ namespace Text_Football
                 {
                     if (value == 1 || value == 2 )
                     {
-                        Console.WriteLine("You have selected: " + value);
+                        Console.WriteLine("You have selected: " + value + "\n\n\n");
                         unsuccessful = false;
                     }
                     else
                     {
-                        Console.WriteLine("Your input needs to be 1 or 2.");
+                        Console.WriteLine("\nYour input needs to be 1 or 2.\n");
                     }
 
                 }
                 else
                 {
-                    Console.WriteLine("Your input needs to be a number. Please try again.");
+                    Console.WriteLine("\nYour input needs to be a number. Please try again.\n");
                 }
             }
 
@@ -94,7 +84,7 @@ namespace Text_Football
             List<Player> players = new List<Player>();
             if(numPlayers == 1)
             {
-                Console.WriteLine("You have selected 1 player. You will be competing against the CPU.");
+                Console.WriteLine("\nYou have selected 1 player. You will be competing against the CPU.");
 
                 Console.WriteLine("Creating player 1...");
                 Player player1 = new Player();
@@ -104,7 +94,7 @@ namespace Text_Football
                 player1.teamName = Console.ReadLine();
                 Console.WriteLine("Player 1 is: " + player1.playerName + "\n" + player1.playerName + " will be controlling the " + player1.teamName);
 
-                Console.WriteLine("Creating the CPU...");
+                Console.WriteLine("\nCreating the CPU...");
 
                 Player CPU = new Player();
                 CPU.playerName = "CPU";
@@ -113,13 +103,12 @@ namespace Text_Football
 
                 players.Add(player1);
                 players.Add(CPU);
-                Console.ReadLine();
             }
             else if(numPlayers == 2)
             {
-                Console.WriteLine("You have selected 2 players.");
+                Console.WriteLine("\nYou have selected 2 players.");
 
-                Console.WriteLine("Creating player 1...");
+                Console.WriteLine("\nCreating player 1...");
                 Player player1 = new Player();
                 Console.WriteLine("Player 1 enter your player name:");
                 player1.playerName = Console.ReadLine();
@@ -127,7 +116,7 @@ namespace Text_Football
                 player1.teamName = Console.ReadLine();
                 Console.WriteLine("Player 1 is: " + player1.playerName + "\n" + player1.playerName + " will be controlling the " + player1.teamName);
 
-                Console.WriteLine("Creating player 2...");
+                Console.WriteLine("\nCreating player 2...");
                 Player player2 = new Player();
                 Console.WriteLine("Player 2 enter your player name:");
                 player2.playerName = Console.ReadLine();
@@ -137,7 +126,6 @@ namespace Text_Football
 
                 players.Add(player1);
                 players.Add(player2);
-                Console.ReadLine();
             }
 
             return players;
@@ -151,16 +139,16 @@ namespace Text_Football
             if(whoPicks == 1 && p2.playerName == "CPU")
             {
                 p2.hasBall = true;
-                Console.WriteLine("The CPU has decided to kick the ball");
+                Console.WriteLine("\nThe CPU has decided to kick the ball");
                 return;
             }
             else if(whoPicks == 0)
             {
-                Console.WriteLine(p1.playerName + " you have been selected to pick whether you would like to kick or recieve to start the game.");
+                Console.WriteLine("\n\n" + p1.playerName + " you have been selected to pick whether you would like to kick or recieve to start the game.");
             }
             else
             {
-                Console.WriteLine(p2.playerName + " you have been selected to pick whether you would like to kick or recieve to start the game.");
+                Console.WriteLine("\n\n" + p2.playerName + " you have been selected to pick whether you would like to kick or recieve to start the game.");
             }
             int selection = inputForSelection();
             if(whoPicks == 0 && selection == 0)
@@ -200,13 +188,13 @@ namespace Text_Football
                     }
                     else
                     {
-                        Console.WriteLine("Your input needs to be one of the options available to you.");
+                        Console.WriteLine("\nYour input needs to be one of the options available to you.");
                     }
 
                 }
                 else
                 {
-                    Console.WriteLine("Your input needs to be a number. Please try again.");
+                    Console.WriteLine("\nYour input needs to be a number. Please try again.");
                 }
             }
 
