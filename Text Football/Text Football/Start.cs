@@ -31,6 +31,16 @@ namespace Text_Football
                 r.Next(0, 101);
                 count++;
             }*/
+            //Console.SetWindowPosition(0, 0);
+            /*Console.WindowHeight = Console.LargestWindowHeight;
+            Console.WindowWidth = Console.LargestWindowWidth;
+            Console.WindowTop = 0;
+            Console.WindowLeft = 0;
+            Console.SetBufferSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
+            Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);*/
+            
+            
+            
 
             Console.WriteLine(" = = = = = =   = = = = =   =      =   = = = = = =            = = = = =      = = = =       = = = =     = = = = = =   = = = =            =         =             =               ");
             Console.WriteLine("      =        =            =    =         =                 =             =       =     =       =         =        =      =          = =        =             =               ");
