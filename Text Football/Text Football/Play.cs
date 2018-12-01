@@ -11,8 +11,6 @@ namespace Text_Football
         public int yardDifference = 0;
         public int determineOutcome(Player p1, Player p2)
         {
-            //if offense and defense numbers add up to the turnover number then a turnover will occur
-
             //offensive advantage
             if(p1.hasBall == true)
             {
@@ -93,22 +91,6 @@ namespace Text_Football
 
         public void reportOutcome(Player p1, Player p2, int yardsToGo)
         {
-            /*int t = turnOver();
-            if(t == yardDifference)
-            {
-                Console.WriteLine("Turnover!");
-                if(p1.hasBall == true)
-                {
-                    p1.hasBall = false;
-                    p2.hasBall = true;
-                }
-                else
-                {
-                    p1.hasBall = true;
-                    p2.hasBall = false;
-                }
-                return;
-            }*/
             if (yardDifference >= yardsToGo)
             {
                 yardDifference = yardsToGo;
@@ -124,14 +106,6 @@ namespace Text_Football
                 {
                     Console.WriteLine(p1.teamName + " threw the ball for " + yardDifference + " yards \n");
                 }
-                /*else if(p1.selectedPlay == 4)
-                {
-                    Console.WriteLine(p1.teamName + " has attempted a field goal.");
-                }
-                else
-                {
-                    Console.WriteLine(p1.teamName + " has punted the ball");
-                }*/
             }
             else
             {
@@ -145,19 +119,112 @@ namespace Text_Football
                     {
                         Console.WriteLine(p2.teamName + " threw the ball for " + yardDifference + " yards \n");
                     }
-                    /*else if (p2.selectedPlay == 4)
-                    {
-                        Console.WriteLine(p2.teamName + " has attempted a field goal.");
-                    }
-                    else
-                    {
-                        Console.WriteLine(p2.teamName + " has punted the ball");
-                    }*/
                 }
             }
         }
 
-        /*public int turnOver()
+        public int kickoff(Player player1, Player player2)
+        {
+            if (player1.hasBall == true)
+            {
+                Console.WriteLine(player1.teamName + " has kicked off to " + player2.teamName);
+            }
+            else
+            {
+                Console.WriteLine(player2.teamName + " has kicked off to " + player1.teamName);
+            }
+            switchBall(player1, player2);
+
+            Random random = new Random();
+
+            int distanceKicked = random.Next(50, 86);
+            int yardsReturned = random.Next(0, 26);
+            int luck = random.Next(0, 101);
+
+            int yards = 0;
+
+            int yardsKicked = 75 - distanceKicked;
+
+            if (yardsReturned == luck)
+            {
+                yardsReturned = 100;
+            }
+
+            yards = yardsKicked + yardsReturned;
+
+            if (yards >= 100)
+            {
+                yards = 100;
+            }
+
+            int ballKickedTo = 75 - distanceKicked;
+            Console.WriteLine("The kick was " + distanceKicked + " yards to the " + ballKickedTo + " yard line");
+            Console.WriteLine("The return was for " + yardsReturned + " yards \n");
+
+            return yards;
+        }
+
+        public void touchdown(Player player1, Player player2)
+        {
+            Console.WriteLine(" = = = = = =     = = = =     =         =     = = = =     =         =   = = = = =        = = = =     =             =   =        =      ");
+            Console.WriteLine("      =         =       =    =         =    =        =   =         =   =         =     =       =    =      =      =   = =      =      ");
+            Console.WriteLine("      =        =         =   =         =   =             =         =   =          =   =         =   =     = =     =   =  =     =      ");
+            Console.WriteLine("      =        =         =   =         =   =             = = = = = =   =          =   =         =   =     = =     =   =   =    =      ");
+            Console.WriteLine("      =        =         =   =         =   =             =         =   =          =   =         =   =    =   =    =   =    =   =      ");
+            Console.WriteLine("      =         =       =    =         =    =        =   =         =   =         =     =       =    =    =   =    =   =     =  =      ");
+            Console.WriteLine("      =          = = = =       = = = =       = = = =     =         =   = = = = =        = = = =       = =     = =     =      = =       ");
+
+            if (player1.hasBall == true)
+            {
+                Console.WriteLine(player1.teamName + "  has scored a Touchdown! \n");
+                player1.score += 7;
+            }
+            else
+            {
+                Console.WriteLine(player2.teamName + "  has scored a Touchdown! \n");
+                player2.score += 7;
+            }
+        }
+
+        public bool fieldGoal(Player p1, Player p2, int totalYardsToGo)
+        {
+            Console.WriteLine(" = = = = = =   =    = = = = =     =            = = = = =              = = = =         = = = =           =          =                     ");
+            Console.WriteLine(" =             =    =             =            =         =          =         =      =       =         = =         =                     ");
+            Console.WriteLine(" =             =    =             =            =          =         =               =         =       =   =        =                     ");
+            Console.WriteLine(" = = = = =     =    = = =         =            =          =         =               =         =      =     =       =                     ");
+            Console.WriteLine(" =             =    =             =            =          =         =      = = =    =         =     = = = = =      =                     ");
+            Console.WriteLine(" =             =    =             =            =         =           =        =      =       =     =         =     =                     ");
+            Console.WriteLine(" =             =    = = = = =     = = = = =    = = = = =               = = = =        = = = =     =           =    = = = = =             ");
+
+            bool fieldGoalIsGood = false;
+            if (p1.hasBall == true)
+            {
+                if (p1.yards >= totalYardsToGo)
+                {
+                    fieldGoalIsGood = true;
+                }
+            }
+            else
+            {
+                if (p2.yards >= totalYardsToGo)
+                {
+                    fieldGoalIsGood = true;
+                }
+            }
+
+            return fieldGoalIsGood;
+        }
+
+        public void touchback(Down d)
+        {
+            if (d.totalYardsToGo >= 100)
+            {
+                d.ballOn = 25;
+                d.totalYardsToGo = 75;
+            }
+        }
+
+        public int turnOver()
         {
             int turnOver = 0;
 
@@ -165,8 +232,22 @@ namespace Text_Football
             turnOver = random.Next(-10, 101);
 
             return turnOver;
-        }*/
+        }
 
-        
+        public void switchBall(Player player1, Player player2)
+        {
+            if (player1.hasBall == true)
+            {
+                player1.hasBall = false;
+                player2.hasBall = true;
+                Console.WriteLine(player2.teamName + " has the ball now. \n");
+            }
+            else
+            {
+                player1.hasBall = true;
+                player2.hasBall = false;
+                Console.WriteLine(player1.teamName + " has the ball now. \n");
+            }
+        }
     }
 }

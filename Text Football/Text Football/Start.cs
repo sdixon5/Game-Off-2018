@@ -10,20 +10,39 @@ namespace Text_Football
     {
         public void startSetUp()
         {
+            intro();
             int numPlayers = numberOfPlayers();
             List<Player> players = createPlayers(numPlayers);
             Player p1 = players[0];
             Player p2 = players[1];
-            //for testing, it works!
-            //Console.WriteLine(p1.teamName);
-            //Console.ReadLine();
             coinToss(p1, p2);
-            //testing coinToss, all good!
-            //Console.WriteLine("player 1: " + p1.hasBall);
-            //Console.WriteLine("player 2: " + p2.hasBall);
-            //Console.ReadLine();
             Game game = new Game();
             game.runGame(p1, p2);
+
+        }
+
+        public void intro()
+        {
+            //test if this fixes are random issues
+            Random r = new Random();
+            int count = 0;
+            while(count < 100)
+            {
+                r.Next(0, 101);
+                count++;
+            }
+
+            Console.WriteLine(" = = = = = =   = = = = =   =      =   = = = = = =            = = = = =      = = = =       = = = =     = = = = = =   = = = =            =         =             =               ");
+            Console.WriteLine("      =        =            =    =         =                 =             =       =     =       =         =        =      =          = =        =             =               ");
+            Console.WriteLine("      =        =             =  =          =                 =            =         =   =         =        =        =      =         =   =       =             =               ");
+            Console.WriteLine("      =        = = =          =            =      = = = =    = = = =      =         =   =         =        =        = = = =         =     =      =             =               ");
+            Console.WriteLine("      =        =             =  =          =                 =            =         =   =         =        =        =       =      = = = = =     =             =               ");
+            Console.WriteLine("      =        =            =    =         =                 =             =       =     =       =         =        =        =    =         =    =             =               ");
+            Console.WriteLine("      =        = = = = =   =      =        =                 =              = = = =       = = = =          =        = = = = =    =           =   = = = = =     = = = = =       ");
+
+            Console.WriteLine("\n \n Press Enter to Start");
+
+            Console.ReadLine();
 
         }
 
@@ -76,7 +95,7 @@ namespace Text_Football
                 Console.WriteLine("Player 1 is: " + player1.playerName + "\n" + player1.playerName + " will be controlling the " + player1.teamName);
 
                 Console.WriteLine("Creating the CPU...");
-                //need to make the cpu class/or use the player class? and create a new cpu here
+
                 Player CPU = new Player();
                 CPU.playerName = "CPU";
                 CPU.teamName = "CPU's";
@@ -118,7 +137,7 @@ namespace Text_Football
         {
             Random random = new Random();
             int whoPicks = random.Next(0, 2);
-            //Console.WriteLine("random: " + whoPicks);
+
             if(whoPicks == 1 && p2.playerName == "CPU")
             {
                 p2.hasBall = true;
@@ -160,7 +179,7 @@ namespace Text_Football
             while (unsuccessful)
             {
                 Console.WriteLine("Please enter 0 to kick or 1 to recieve the ball:");
-                //need to hide the input... readline wont work, neither will readkey or read, but look inside windows screenshots, might have a way to do it
+
                 string input = Console.ReadLine();
                 if (int.TryParse(input, out value))
                 {

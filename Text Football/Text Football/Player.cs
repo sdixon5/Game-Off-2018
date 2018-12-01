@@ -17,23 +17,6 @@ namespace Text_Football
 
         public void playSelection()
         {
-            //int selectedPlay = 0;
-            //int yards = 0;
-
-            //for the cpu just have a random here, and if teamName == "CPU" then have the random number used instead of the console logs
-            /*if(this.playerName == "CPU" && this.hasBall == true)
-            {
-                Random r = new Random();
-                selectedPlay = r.Next(0, 6);
-                yards = callOffense();
-            }
-            else if(this.playerName == "CPU" && this.hasBall == false)
-            {
-                Random r = new Random();
-                selectedPlay = r.Next(0, 6);
-                yards = callDefense();
-            }*/
-
             if(this.hasBall == true)
             {
                 Console.WriteLine(teamName + " are on offense. Please pick from the following options.");
@@ -44,8 +27,6 @@ namespace Text_Football
                 Console.WriteLine("5. Punt \n");
 
                 selectedPlay = inputForSelection();
-                //call offense object?
-                //change the return to a yardsgained, from the offense object?
                 yards = callOffense();
             }
             else if(this.hasBall == false)
@@ -62,7 +43,6 @@ namespace Text_Football
                 yards = callDefense();
             }
 
-            //return yards;
         }
 
         public int inputForSelection()
@@ -73,13 +53,11 @@ namespace Text_Football
             while (unsuccessful)
             {
                 Console.WriteLine("Please enter the number for the play you would like to select: \n");
-                //need to hide the input... readline wont work, neither will readkey or read, but look inside windows screenshots, might have a way to do it
-                string input = Console.ReadLine();
+                string input = hiddenInput();
                 if (int.TryParse(input, out value))
                 {
                     if(value == 1|| value == 2 || value == 3 || value == 4 || value == 5)
                     {
-                        //Console.WriteLine("You have selected: " + value);
                         unsuccessful = false;
                     }
                     else
@@ -95,6 +73,23 @@ namespace Text_Football
             }
 
             return value;
+        }
+
+        public string hiddenInput()
+        {
+            string hidden = null;
+
+            while (true)
+            {
+                var key = Console.ReadKey(true);
+                if(key.Key == ConsoleKey.Enter)
+                {
+                    break;
+                }
+                hidden += key.KeyChar;
+            }
+
+            return hidden;
         }
 
         public int callOffense()

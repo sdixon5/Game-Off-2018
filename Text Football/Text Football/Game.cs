@@ -15,14 +15,11 @@ namespace Text_Football
 
             bool not_A_Score = true;
 
-            //could be put into a score class! - maybe?
             int combinedScore = player1.score + player2.score;
 
-            //scoring is not being checked against the combined score
             while(combinedScore < 50)
             {
-                d.ballOn = kickoff(player1, player2);
-                //if ball on = 100 then its a touchdown via a kick return - need to account for this too
+                d.ballOn = p.kickoff(player1, player2);
                 not_A_Score = true;
 
                 while (not_A_Score)
@@ -32,13 +29,7 @@ namespace Text_Football
                     Console.WriteLine(d.down + " down. " + d.toGo + " yards til first.");
                     Console.WriteLine("The ball is on the " + d.ballOn + " yard line. There are " + d.totalYardsToGo + " yards to go to score. \n");
 
-                    //if play outcome < down to go then down++
-
-                    //need to loop the play selection process and always check for a touchdown
-
                     player1.playSelection();
-                    //if player2.playerName = "CPU" call cpu.play selection
-                    //else call player2.playSelection(); and remove the cpu code to its own file
                     if (player2.playerName == "CPU")
                     {
                         CPU cpu = new CPU();
@@ -52,8 +43,7 @@ namespace Text_Football
 
                     if (player1.hasBall == true && player1.selectedPlay == 4 || player2.hasBall == true && player2.selectedPlay == 4)
                     {
-                        //call field goal
-                        bool itsGood = fieldGoal(player1, player2, d.totalYardsToGo);
+                        bool itsGood = p.fieldGoal(player1, player2, d.totalYardsToGo);
                         if (itsGood == true)
                         {
                             not_A_Score = false;
@@ -67,7 +57,6 @@ namespace Text_Football
                                 Console.WriteLine(player2.teamName + "  has scored a Field Goal! \n");
                                 player2.score += 3;
                             }
-                            //need to call kickoff - is done by not a score boolean and set all down settings for kickoff
                             d.down = 1;
                             d.toGo = 10;
                             d.ballOn = 25;
@@ -83,7 +72,7 @@ namespace Text_Football
                             {
                                 Console.WriteLine(player2.teamName + " missed the field goal \n");
                             }
-                            switchBall(player1, player2);
+                            p.switchBall(player1, player2);
                             d.down = 1;
                             d.toGo = 10;
                             d.ballOn = 100 - d.ballOn;
@@ -91,34 +80,41 @@ namespace Text_Football
                         }
 
                         showScore(player1, player2);
-                        //if return of 0 = good, then trigger not a score
-                            //call kickoff!
-                            //set all down settings for kickoff
-                        //else if return of 1 = bad, 
-                            //just flip who has ball and down info to flip the field
                     }
                     else if(player1.hasBall == true && player1.selectedPlay == 5 || player2.hasBall == true && player2.selectedPlay == 5)
                     {
-                        //call punt
+                        //this is punting the ball
+                        if(player1.hasBall == true)
+                        {
+                            p.yardDifference = player1.yards - player2.yards;
+                            Console.WriteLine(player1.teamName + " has punted the ball to " + player2.teamName);
+                            Console.WriteLine("The punt was " + player1.yards + " yards. With a return of " + p.yardDifference + "\n");
+                        }
+                        else
+                        {
+                            p.yardDifference = player2.yards - player1.yards;
+                            Console.WriteLine(player2.teamName + " has punted the ball to " + player1.teamName + "\n");
+                            Console.WriteLine("The punt was " + player2.yards + " yards. With a return of " + p.yardDifference + "\n");
+                        }
+                        
                         d.down = 1;
                         d.toGo = 10;
                         d.ballOn = 100 - (d.ballOn + p.yardDifference);
                         d.totalYardsToGo = 100 - d.ballOn;
-                        touchback(d);
-                        switchBall(player1, player2);
+                        p.touchback(d);
+                        p.switchBall(player1, player2);
                     }
                     else
                     {
                         p.determineOutcome(player1, player2);
                         p.reportOutcome(player1, player2, d.totalYardsToGo);
 
-                        int t = turnOver();
+                        int t = p.turnOver();
 
                         if (t == p.yardDifference)
                         {
-                            //need to account for the yards gained or lost on the play
                             Console.WriteLine("Turnover!");
-                            switchBall(player1, player2);
+                            p.switchBall(player1, player2);
                             d.down = 1;
                             d.toGo = 10;
                             d.ballOn = 100 - (d.ballOn + p.yardDifference);
@@ -126,10 +122,8 @@ namespace Text_Football
                         }
                         else if (p.yardDifference >= d.totalYardsToGo)
                         {
-                            //this is calling a touchdown!
                             not_A_Score = false;
-                            touchdown(player1, player2);
-                            //need to call kickoff - is done by not a score boolean and set all down settings for kickoff
+                            p.touchdown(player1, player2);
                             d.down = 1;
                             d.toGo = 10;
                             d.ballOn = 25;
@@ -145,7 +139,7 @@ namespace Text_Football
                         }
                         else if (d.down == 4)
                         {
-                            switchBall(player1, player2);
+                            p.switchBall(player1, player2);
                             d.down = 1;
                             d.toGo = 10;
                             d.ballOn = 100 - d.ballOn;
@@ -172,126 +166,6 @@ namespace Text_Football
 
         }
 
-        public int kickoff(Player player1, Player player2)
-        {
-            //this should be called after a touchdown or field Goal
-
-            if(player1.hasBall == true)
-            {
-                Console.WriteLine(player1.teamName + " has kicked off to " + player2.teamName);
-            }
-            else
-            {
-                Console.WriteLine(player2.teamName + " has kicked off to " + player1.teamName);
-            }
-            switchBall(player1, player2);
-
-            Random random = new Random();
-
-            int distanceKicked = random.Next(50, 76); // -- will change from 76 to 86 when we account for touchbacks
-            int yardsReturned = random.Next(0, 26);
-            int luck = random.Next(0, 101);
-            //ran num for yards kicked
-            //ran num for yards returned
-
-            int yards = 0;
-
-            int yardsKicked = 75 - distanceKicked;
-
-            //to account for chance of touchdown on kickoff
-            if (yardsReturned == luck)
-            {
-                yardsReturned = 100;
-            }
-
-            yards = yardsKicked + yardsReturned;
-
-            if(yards > 100)
-            {
-                yards = 100;
-            }
-
-            int ballKickedTo = 75 - distanceKicked;
-            Console.WriteLine("The kick was " + distanceKicked + " yards to the " + ballKickedTo + " yard line");
-            Console.WriteLine("The return was for " + yardsReturned + " yards \n");
-
-            //should return where the ball is on the field after the kickoff
-            return yards;
-        }
-
-        //could be put into a score class! - maybe?
-        public void touchdown(Player player1, Player player2)
-        {
-            if (player1.hasBall == true)
-            {
-                Console.WriteLine(player1.teamName + "  has scored a Touchdown! \n");
-                player1.score += 7;
-            }
-            else
-            {
-                Console.WriteLine(player2.teamName + "  has scored a Touchdown! \n");
-                player2.score += 7;
-            }
-        }
-
-        public int turnOver()
-        {
-            int turnOver = 0;
-
-            Random random = new Random();
-            turnOver = random.Next(-10, 101);
-
-            return turnOver;
-        }
-
-        //could be put into a score class! - maybe?
-        public bool fieldGoal(Player p1, Player p2, int totalYardsToGo)
-        {
-            bool fieldGoalIsGood = false;
-            if(p1.hasBall == true)
-            {
-                if(p1.yards >= totalYardsToGo)
-                {
-                    fieldGoalIsGood = true;
-                }
-            }
-            else
-            {
-                if (p2.yards >= totalYardsToGo)
-                {
-                    fieldGoalIsGood = true;
-                }
-            }
-            //check if fieldGoal distance is longer than reported outcome?
-            //if good, set score
-            //if not, switch who has ball
-            //need to trigger the score if it is good, can be done with a return of 0 or 1,
-            return fieldGoalIsGood;
-        }
-
-        public void punt(Player p1, Player p2)
-        {
-            //how long of a punt?
-            //where is ball on field
-            //switch who has ball
-        }
-
-        public void switchBall(Player player1, Player player2)
-        {
-            if (player1.hasBall == true)
-            {
-                player1.hasBall = false;
-                player2.hasBall = true;
-                Console.WriteLine(player2.teamName + " has the ball now. \n");
-            }
-            else
-            {
-                player1.hasBall = true;
-                player2.hasBall = false;
-                Console.WriteLine(player1.teamName + " has the ball now. \n");
-            }
-        }
-
         public void showScore(Player p1, Player p2)
         {
             Console.WriteLine("The current score: ");
@@ -299,13 +173,6 @@ namespace Text_Football
             Console.WriteLine(p2.teamName + " has a score of: " + p2.score + "\n");
         }
 
-        public void touchback(Down d)
-        {
-            if(d.totalYardsToGo >= 100)
-            {
-                d.ballOn = 25;
-                d.totalYardsToGo = 75;
-            }
-        }
+        
     }
 }
