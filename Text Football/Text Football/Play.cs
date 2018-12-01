@@ -290,8 +290,16 @@ namespace Text_Football
         public void safety(Player p1, Player p2)
         {
             Console.WriteLine("============================================================================================================");
-            Console.WriteLine("Safety!");
-            if(p1.hasBall == true)
+
+            Console.WriteLine("     = =              =         = = = = = =   = = = = =    = = = = = =   =         =   ");
+            Console.WriteLine("  =       =          = =        =             =                 =         =       =    ");
+            Console.WriteLine("  =                 =   =       =             =                 =          =     =     ");
+            Console.WriteLine("     = =           =     =      = = = = =     = = =             =           =   =      ");
+            Console.WriteLine("          =       = = = = =     =             =                 =             =        ");
+            Console.WriteLine("  =       =      =         =    =             =                 =             =        ");
+            Console.WriteLine("     = =        =           =   =             = = = = =         =             =        ");
+
+            if (p1.hasBall == true)
             {
                 Console.WriteLine(p2.teamName + " has scored a safety!");
                 p2.score += 2;
