@@ -11,7 +11,6 @@ namespace Text_Football
         public int yardDifference = 0;
         public int determineOutcome(Player p1, Player p2)
         {
-            //offensive advantage
             if(p1.hasBall == true)
             {
                 //run advantage
@@ -28,6 +27,21 @@ namespace Text_Football
                 else if(p1.selectedPlay == 3 && p2.selectedPlay == 2)
                 {
                     yardDifference = p1.yards - (p2.yards / 2);
+                }
+                //blitz advantage
+                if (p2.selectedPlay == 1 && p1.selectedPlay == 1 || p2.selectedPlay == 1 && p1.selectedPlay == 3)
+                {
+                    yardDifference = p1.yards - (p2.yards * 2);
+                }
+                //zone advantage
+                else if (p2.selectedPlay == 2 && p1.selectedPlay == 2)
+                {
+                    yardDifference = p1.yards - (p2.yards * 2);
+                }
+                //man advantage
+                else if (p2.selectedPlay == 3 && p1.selectedPlay == 3)
+                {
+                    yardDifference = p1.yards - (p2.yards * 2);
                 }
             }
             else if(p2.hasBall == true)
@@ -47,42 +61,20 @@ namespace Text_Football
                 {
                     yardDifference = p2.yards - (p1.yards / 2);
                 }
-            }
-            //defensive advantage
-            else if(p1.hasBall == false)
-            {
                 //blitz advantage
-                if(p1.selectedPlay == 1 && p2.selectedPlay == 1 || p1.selectedPlay == 1 && p2.selectedPlay == 3)
+                if (p1.selectedPlay == 1 && p2.selectedPlay == 1 || p1.selectedPlay == 1 && p2.selectedPlay == 3)
                 {
                     yardDifference = p2.yards - (p1.yards * 2);
                 }
                 //zone advantage
-                else if(p1.selectedPlay == 2 && p2.selectedPlay == 2)
+                else if (p1.selectedPlay == 2 && p2.selectedPlay == 2)
                 {
                     yardDifference = p2.yards - (p1.yards * 2);
                 }
                 //man advantage
-                else if(p1.selectedPlay == 3 && p2.selectedPlay == 3)
+                else if (p1.selectedPlay == 3 && p2.selectedPlay == 3)
                 {
                     yardDifference = p2.yards - (p1.yards * 2);
-                }
-            }
-            else if(p2.hasBall == false)
-            {
-                //blitz advantage
-                if (p2.selectedPlay == 1 && p1.selectedPlay == 1 || p2.selectedPlay == 1 && p1.selectedPlay == 3)
-                {
-                    yardDifference = p1.yards - (p2.yards * 2);
-                }
-                //zone advantage
-                else if (p2.selectedPlay == 2 && p1.selectedPlay == 2)
-                {
-                    yardDifference = p1.yards - (p2.yards * 2);
-                }
-                //man advantage
-                else if (p2.selectedPlay == 3 && p1.selectedPlay == 3)
-                {
-                    yardDifference = p1.yards - (p2.yards * 2);
                 }
             }
 
@@ -123,7 +115,7 @@ namespace Text_Football
             }
         }
 
-        public int kickoff(Player player1, Player player2)
+        public int kickoff(Player player1, Player player2, Down d)
         {
             if (player1.hasBall == true)
             {
@@ -158,8 +150,16 @@ namespace Text_Football
             }
 
             int ballKickedTo = 75 - distanceKicked;
-            Console.WriteLine("The kick was " + distanceKicked + " yards to the " + ballKickedTo + " yard line");
-            Console.WriteLine("The return was for " + yardsReturned + " yards \n");
+
+            if(ballKickedTo <= 0)
+            {
+                touchback(d);
+            }
+            else
+            {
+                Console.WriteLine("The kick was " + distanceKicked + " yards to the " + ballKickedTo + " yard line");
+                Console.WriteLine("The return was for " + yardsReturned + " yards \n");
+            }
 
             return yards;
         }
@@ -188,19 +188,21 @@ namespace Text_Football
 
         public bool fieldGoal(Player p1, Player p2, int totalYardsToGo)
         {
-            Console.WriteLine(" = = = = = =   =    = = = = =     =            = = = = =              = = = =         = = = =           =          =                     ");
-            Console.WriteLine(" =             =    =             =            =         =          =         =      =       =         = =         =                     ");
-            Console.WriteLine(" =             =    =             =            =          =         =               =         =       =   =        =                     ");
-            Console.WriteLine(" = = = = =     =    = = =         =            =          =         =               =         =      =     =       =                     ");
-            Console.WriteLine(" =             =    =             =            =          =         =      = = =    =         =     = = = = =      =                     ");
-            Console.WriteLine(" =             =    =             =            =         =           =        =      =       =     =         =     =                     ");
-            Console.WriteLine(" =             =    = = = = =     = = = = =    = = = = =               = = = =        = = = =     =           =    = = = = =             ");
+            
 
             bool fieldGoalIsGood = false;
             if (p1.hasBall == true)
             {
                 if (p1.yards >= totalYardsToGo)
                 {
+                    Console.WriteLine(" = = = = = =   =    = = = = =     =            = = = = =              = = = =         = = = =           =          =                     ");
+                    Console.WriteLine(" =             =    =             =            =         =          =         =      =       =         = =         =                     ");
+                    Console.WriteLine(" =             =    =             =            =          =         =               =         =       =   =        =                     ");
+                    Console.WriteLine(" = = = = =     =    = = =         =            =          =         =               =         =      =     =       =                     ");
+                    Console.WriteLine(" =             =    =             =            =          =         =      = = =    =         =     = = = = =      =                     ");
+                    Console.WriteLine(" =             =    =             =            =         =           =        =      =       =     =         =     =                     ");
+                    Console.WriteLine(" =             =    = = = = =     = = = = =    = = = = =               = = = =        = = = =     =           =    = = = = =             ");
+
                     fieldGoalIsGood = true;
                 }
             }
@@ -208,6 +210,14 @@ namespace Text_Football
             {
                 if (p2.yards >= totalYardsToGo)
                 {
+                    Console.WriteLine(" = = = = = =   =    = = = = =     =            = = = = =              = = = =         = = = =           =          =                     ");
+                    Console.WriteLine(" =             =    =             =            =         =          =         =      =       =         = =         =                     ");
+                    Console.WriteLine(" =             =    =             =            =          =         =               =         =       =   =        =                     ");
+                    Console.WriteLine(" = = = = =     =    = = =         =            =          =         =               =         =      =     =       =                     ");
+                    Console.WriteLine(" =             =    =             =            =          =         =      = = =    =         =     = = = = =      =                     ");
+                    Console.WriteLine(" =             =    =             =            =         =           =        =      =       =     =         =     =                     ");
+                    Console.WriteLine(" =             =    = = = = =     = = = = =    = = = = =               = = = =        = = = =     =           =    = = = = =             ");
+
                     fieldGoalIsGood = true;
                 }
             }
@@ -225,7 +235,7 @@ namespace Text_Football
             }
             else
             {
-                yardDifference = player2.yards = player1.yards;
+                yardDifference = player2.yards - player1.yards;
                 Console.WriteLine(player2.teamName + " has punted the ball to " + player1.teamName + "\n");
                 Console.WriteLine("The punt was " + player2.yards + " yards. With a return of " + player1.yards + "\n");
             }
@@ -270,6 +280,21 @@ namespace Text_Football
                 player1.hasBall = true;
                 player2.hasBall = false;
                 Console.WriteLine(player1.teamName + " has the ball now. \n");
+            }
+        }
+
+        public void safety(Player p1, Player p2)
+        {
+            Console.WriteLine("Safety!");
+            if(p1.hasBall == true)
+            {
+                Console.WriteLine(p2.teamName + " has scored a safety!");
+                p2.score += 2;
+            }
+            else
+            {
+                Console.WriteLine(p1.teamName + " has scored a safety!");
+                p1.score += 2;
             }
         }
     }

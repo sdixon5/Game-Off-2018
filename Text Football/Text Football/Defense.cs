@@ -13,7 +13,7 @@ namespace Text_Football
             int yardsDefended = 0;
 
             Random random = new Random();
-            yardsDefended = random.Next(0, 26);
+            yardsDefended = random.Next(0, 21);
 
             return yardsDefended;
         }
@@ -23,7 +23,7 @@ namespace Text_Football
             int yardsDefended = 0;
 
             Random random = new Random();
-            yardsDefended = random.Next(0, 16);
+            yardsDefended = random.Next(0, 21);
 
             return yardsDefended;
         }
@@ -33,7 +33,7 @@ namespace Text_Football
             int yardsDefended = 0;
 
             Random random = new Random();
-            yardsDefended = random.Next(15, 56);
+            yardsDefended = random.Next(0, 21);
 
             return yardsDefended;
         }

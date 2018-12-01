@@ -24,13 +24,13 @@ namespace Text_Football
         public void intro()
         {
             //test if this fixes are random issues
-            Random r = new Random();
+            /*Random r = new Random();
             int count = 0;
             while(count < 100)
             {
                 r.Next(0, 101);
                 count++;
-            }
+            }*/
 
             Console.WriteLine(" = = = = = =   = = = = =   =      =   = = = = = =            = = = = =      = = = =       = = = =     = = = = = =   = = = =            =         =             =               ");
             Console.WriteLine("      =        =            =    =         =                 =             =       =     =       =         =        =      =          = =        =             =               ");
@@ -40,7 +40,7 @@ namespace Text_Football
             Console.WriteLine("      =        =            =    =         =                 =             =       =     =       =         =        =        =    =         =    =             =               ");
             Console.WriteLine("      =        = = = = =   =      =        =                 =              = = = =       = = = =          =        = = = = =    =           =   = = = = =     = = = = =       ");
 
-            Console.WriteLine("\n \n Press Enter to Start");
+            Console.WriteLine("\n \n Press Any Key to Start");
 
             Console.ReadLine();
 
@@ -98,7 +98,7 @@ namespace Text_Football
 
                 Player CPU = new Player();
                 CPU.playerName = "CPU";
-                CPU.teamName = "CPU's";
+                CPU.teamName = "CPUs";
                 Console.WriteLine("The CPU name is: " + CPU.playerName + "\n" + CPU.playerName + " will be controlling the " + CPU.teamName);
 
                 players.Add(player1);

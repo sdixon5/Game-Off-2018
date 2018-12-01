@@ -19,7 +19,7 @@ namespace Text_Football
 
             while(combinedScore < 50)
             {
-                d.ballOn = p.kickoff(player1, player2);
+                d.ballOn = p.kickoff(player1, player2, d);
                 not_A_Score = true;
 
                 while (not_A_Score)
@@ -40,8 +40,16 @@ namespace Text_Football
                         player2.playSelection();
                     }
                     
-
-                    if (player1.hasBall == true && player1.selectedPlay == 4 || player2.hasBall == true && player2.selectedPlay == 4)
+                    if(d.totalYardsToGo > 100)
+                    {
+                        p.safety(player1, player2);
+                        not_A_Score = false;
+                        d.down = 1;
+                        d.toGo = 10;
+                        d.ballOn = 25;
+                        d.totalYardsToGo = 75;
+                    }
+                    else if (player1.hasBall == true && player1.selectedPlay == 4 || player2.hasBall == true && player2.selectedPlay == 4)
                     {
                         bool itsGood = p.fieldGoal(player1, player2, d.totalYardsToGo);
                         if (itsGood == true)
@@ -144,6 +152,20 @@ namespace Text_Football
 
             Console.WriteLine("Final Score!");
             showScore(player1, player2);
+            Console.WriteLine("\n\n Thanks For Playing!");
+
+
+            if (playAgain())
+            {
+                Start s = new Start();
+                s.startSetUp();
+            }
+            else
+            {
+                Console.WriteLine("\n\n Thanks For Playing! \n Hope you enjoyed your time");
+                Environment.Exit(0);
+            }
+            
 
         }
 
@@ -152,6 +174,27 @@ namespace Text_Football
             Console.WriteLine("The current score: ");
             Console.WriteLine(p1.teamName + " has a score of: " + p1.score);
             Console.WriteLine(p2.teamName + " has a score of: " + p2.score + "\n");
+        }
+
+        public bool playAgain()
+        {
+            bool playAgain = false;
+            
+            Console.WriteLine("Would you like to play again? Press Any Key Play Again or Type 'Quit': \n\n\n");
+            string response = Console.ReadLine();
+            response = response.ToUpper();
+            if (response == "QUIT")
+            {
+                Console.WriteLine("\n\n Thanks For Playing! \n Hope you enjoyed your time");
+                Environment.Exit(0);
+            }
+            else
+            {
+                playAgain = true;
+            }
+            
+
+            return playAgain;
         }
 
         
